@@ -25,7 +25,7 @@ def show_caregory_first(data:list[dict["category"]]) -> dict:
     return finally_dic
 
 #views
-class ProductListAPIView(ListAPIView):
+class ProductViewSet(viewsets.ModelViewSet):
 
     queryset = ProductModel.objects.filter(stock=True)
 
@@ -40,7 +40,7 @@ class ProductListAPIView(ListAPIView):
 
         return Response(finally_dic)
 
-class ProductViewSet(viewsets.ModelViewSet):
+class ProductAdminViewSet(viewsets.ModelViewSet):
     
     queryset = ProductModel.objects.all()
 

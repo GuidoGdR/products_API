@@ -19,17 +19,17 @@ from django.urls import path, include
 
 from rest_framework import routers
 
-from .views import ProductListAPIView, ProductViewSet
+from .views import ProductViewSet, ProductAdminViewSet
 
 
 router = routers.DefaultRouter()
 
-router.register(r'admin', ProductViewSet, 'admin_products')
+router.register(r'', ProductViewSet, 'admin_products')
+router.register(r'admin', ProductAdminViewSet, 'admin_products')
 
 #urlpatterns =router.urls
 
 urlpatterns =[
-    path('', ProductListAPIView.as_view(), name='products_list' ),
-    path('', include(router.urls)),
+    path('API/', include(router.urls)),
 
 ] 
