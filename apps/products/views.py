@@ -2,48 +2,43 @@
 # Create your views here.
 
 
-from rest_framework.generics import ListAPIView
-from rest_framework import viewsets, permissions
+#Views
+#from rest_framework.response import Response
+from rest_framework.viewsets import ReadOnlyModelViewSet, ModelViewSet
 
-from rest_framework.response import Response
+#Permissions
+from rest_framework import permissions
+from rest_framework.authentication import TokenAuthentication
 
+#Models
 from .models import ProductModel
 from .serializers import ProductSerializer
 
-#Tools
-def show_caregory_first(data:list[dict["category"]]) -> dict:
+#decorators
+from .decorators import category_first_list_deco
 
-    finally_dic = {}
-    for dic in data:
-        
-        if dic["category"] in finally_dic.keys():
-            finally_dic[dic["category"]] += [dic]
 
-        else:
-            finally_dic[dic["category"]] = [dic]
+class ProductViewSet(ReadOnlyModelViewSet):
 
-    return finally_dic
-
-#views
-class ProductViewSet(viewsets.ModelViewSet):
 
     queryset = ProductModel.objects.filter(stock=True)
 
     serializer_class = ProductSerializer
-    
-    def get(self, request, *args, **kwargs):
-        queryset = self.filter_queryset(self.get_queryset())
 
-        serializer = self.get_serializer(queryset, many=True)
-        
-        finally_dic = show_caregory_first(serializer.data)
+    @category_first_list_deco
+    def list(self, request, *args, **kwargs):
+        pass
 
-        return Response(finally_dic)
-
-class ProductAdminViewSet(viewsets.ModelViewSet):
+class ProductAdminViewSet(ModelViewSet):
     
     queryset = ProductModel.objects.all()
+    
+    #authentication_classes = [TokenAuthentication]
 
     permission_classes = [permissions.IsAdminUser]
 
     serializer_class = ProductSerializer
+
+    @category_first_list_deco
+    def list(self, request, *args, **kwargs):
+        pass

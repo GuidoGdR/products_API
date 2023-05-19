@@ -24,12 +24,12 @@ from .views import ProductViewSet, ProductAdminViewSet
 
 router = routers.DefaultRouter()
 
-router.register(r'', ProductViewSet, 'admin_products')
-router.register(r'admin', ProductAdminViewSet, 'admin_products')
+router.register(r'API', ProductViewSet, 'API_products')
+router.register(r'admin', ProductAdminViewSet, 'API_products_admin', )
 
 #urlpatterns =router.urls
 
 urlpatterns =[
-    path('API/', include(router.urls)),
+    path('REST/', include(router.urls)),
 
 ] 
