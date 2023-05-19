@@ -33,7 +33,7 @@ class ProductAdminViewSet(ModelViewSet):
     
     queryset = ProductModel.objects.all()
     
-    #authentication_classes = [TokenAuthentication]
+    authentication_classes = [TokenAuthentication]
 
     permission_classes = [permissions.IsAdminUser]
 
