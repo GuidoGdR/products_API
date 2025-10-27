@@ -30,6 +30,6 @@ router.register(r'admin', ProductAdminViewSet, 'API_products_admin', )
 #urlpatterns =router.urls
 
 urlpatterns =[
-    path('REST/', include(router.urls)),
+    path('products/', include(router.urls)),
 
 ] 
