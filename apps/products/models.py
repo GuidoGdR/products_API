@@ -1,34 +1,6 @@
 from django.db import models
 
 # Create your models here.
-
-"""
-class TipeOfProductModel(models.Model):
-    
-    name = models.TextField(verbose_name="Nombre", max_length=50, unique=True, null=False, blank=False)
-
-    def __str__(self) -> str:
-        return f"{self.name}"
-    
-    class Meta:
-        verbose_name = "Tipo de productos"
-        verbose_name_plural = "Tipos de productos"
-
-        
-
-class CategoryModel(models.Model):
-    
-    name = models.TextField(verbose_name="Nombre", max_length=50, unique=True, null=False, blank=False)
-
-    tipe_of_product = models.CharField(verbose_name="Tipe of product", max_length=50, unique=True, null=False, blank=False,)
-    
-    def __str__(self) -> str:
-        return f"{self.name}"
-    
-    class Meta:
-        verbose_name = "Categoria"
-        verbose_name_plural = "Categorias"
-"""
      
 class CategoryModel(models.Model):
     
