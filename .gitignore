@@ -2,3 +2,4 @@
 
 core/__pycache__
 apps/*/__pycache__
+apps/*/migrations
